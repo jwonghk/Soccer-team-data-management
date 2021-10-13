@@ -175,34 +175,33 @@ public class PlayerApp {
     public void playerEditing(Player player) {
         Boolean keepGoing = true;
         String choices = null;
-        Scanner scan = new Scanner(System.in);
-        Integer updateNumb;
-        while (keepGoing) {
+        Integer updateNumb = 0;
+        helperPlayerEditting(true, choices, updateNumb, player);
+    }
+
+    // EFFECT: helper to shorten the playerEditting function
+    public void helperPlayerEditting(boolean going, String choices, Integer updateNumb, Player player) {
+        while (going) {
             System.out.println("Select player's aspect that you want to update: \n "
                     + "g goals, c conceal, w games won, l games lost, p pos, q quit");
-            choices = scan.next();
+            choices = input.next();
             if (choices.equals("g")) {
-                System.out.println("Update goals of player: \n");
-                updateNumb = scan.nextInt();
+                updateNumb = input.nextInt();
                 player.setGoals(updateNumb);
             } else if (choices.equals("c")) {
-                System.out.println("Update conceals: \n");
-                updateNumb = scan.nextInt();
+                updateNumb = input.nextInt();
                 player.setConceal(updateNumb);
             } else if (choices.equals("w")) {
-                System.out.println("Set games won: \n");
-                updateNumb = scan.nextInt();
+                updateNumb = input.nextInt();
                 player.setWon(updateNumb);
             } else if (choices.equals("l")) {
-                System.out.println("Set game lost: \n");
-                updateNumb = scan.nextInt();
+                updateNumb = input.nextInt();
                 player.setLost(updateNumb);
             } else if (choices.equals("p")) {
-                System.out.println("Set position of player: \n");
-                choices = scan.next();
+                choices = input.next();
                 player.setPosition(choices);
             } else if (choices.equals("q")) {
-                keepGoing = false;
+                going = false;
             }
         }
     }
