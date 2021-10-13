@@ -20,3 +20,8 @@ as an application that manages stock porfolios
 - I have always like soccer, so I want to input 
 some of my favorite players and set a team
 
+## User Stories
+- Add a player to the list of available to choose from
+- Remove a player if not considered available anymore
+- Display some statistics of the player
+- Edit a player's statistics
