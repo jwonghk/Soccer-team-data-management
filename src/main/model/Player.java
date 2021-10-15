@@ -22,28 +22,32 @@ public class Player {
         this.position = pos;
     }
 
-    // Return the name of the player
+    // EFFECT: Return the name of the player
     public String getName() {
         return name;
     }
 
+    // EFFECT: Return number of goals of the player
     public Integer getGoals() {
         return goals;
     }
 
+    // EFFECT: Return the number of conceals of the player
     public Integer getConceal() {
         return conceal;
     }
 
-
+    // EFFECT: Return the number of game won of the player
     public Integer getGameWon() {
         return gameWon;
     }
 
+    // EFFECT: Return the number of game lost of the player
     public Integer getGameLost() {
         return gameLost;
     }
 
+    // EFFECT: Return the position of the player
     public String getPosition() {
         return position;
     }

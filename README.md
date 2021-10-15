@@ -23,5 +23,7 @@ some of my favorite players and set a team
 ## User Stories
 - Add a player to the list of available to choose from
 - Remove a player if not considered available anymore
-- Display some statistics of the player
-- Edit a player's statistics
+- Display some statistics of player: such as goals scored,
+  goals concealed, game won, game lost, position
+- Edit a player's goals scored, goals concealed, game won,
+  game lost, position status

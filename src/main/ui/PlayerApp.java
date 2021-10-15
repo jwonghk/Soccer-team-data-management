@@ -4,7 +4,6 @@ import model.Player;
 import model.PlayersDeposits;
 import model.Team;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class PlayerApp {
@@ -88,15 +87,15 @@ public class PlayerApp {
         command = scan.next();
         command = command.toLowerCase();
         if (command.equals("a")) {
-            adding("PlayerDeposits");
+            addingAnPlayerToSquadOrTeamDeposit("PlayerDeposits");
         } else if (command.equals("r")) {
-            removing("PlayerDeposits");
+            removingAnPlayerFromSquadOrDeposit("PlayerDeposits");
         }
 
     }
 
     // EFFECT: add a player to the PlayersDeposits or currentTeam
-    public void adding(String type) {
+    public void addingAnPlayerToSquadOrTeamDeposit(String type) {
         System.out.println("Please enter Name, goals, conceal, game won, game lost, position"
                 + "of the player");
         Scanner scan = new Scanner(System.in);
@@ -124,7 +123,7 @@ public class PlayerApp {
     }
 
     // EFFECT: remove a player from the Player deposits
-    public void removing(String type) {
+    public void removingAnPlayerFromSquadOrDeposit(String type) {
         System.out.println("Enter the name of the player you want to remove from player deposits \n");
         Scanner scan = new Scanner(System.in);
         String name = scan.next();
@@ -143,12 +142,12 @@ public class PlayerApp {
         String command = scan.next();
         if (command.equals("a")) {
             System.out.println("player to add");
-            adding("currentTeam");
+            addingAnPlayerToSquadOrTeamDeposit("currentTeam");
         } else if (command.equals("m")) {
             System.out.println("modify a player");
             editPlayer();
         } else if (command.equals("r")) {
-            removing("currentTeam");
+            removingAnPlayerFromSquadOrDeposit("currentTeam");
         }
     }
 
@@ -171,7 +170,7 @@ public class PlayerApp {
 
     }
 
-    // EFFECT: edit a player's information
+    // EFFECT: A helper for the editPlayer function.
     public void playerEditing(Player player) {
         Boolean keepGoing = true;
         String choices = null;
@@ -179,7 +178,8 @@ public class PlayerApp {
         helperPlayerEditting(true, choices, updateNumb, player);
     }
 
-    // EFFECT: helper to shorten the playerEditting function
+    // EFFECT: A helper to shorten the playerEditting function (note: since originally function
+    //        exceeds the limit set by checkstyle)
     public void helperPlayerEditting(boolean going, String choices, Integer updateNumb, Player player) {
         while (going) {
             System.out.println("Select player's aspect that you want to update: \n "
