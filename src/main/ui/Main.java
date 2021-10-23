@@ -1,10 +1,13 @@
 package ui;
 
-import model.Player;
+import java.io.FileNotFoundException;
 
 public class Main {
     public static void main(String[] args) {
-        new PlayerApp();
-
+        try {
+            new PlayerApp();
+        } catch (FileNotFoundException fle) {
+            System.out.println("Unable to run application: file not found");
+        }
     }
 }

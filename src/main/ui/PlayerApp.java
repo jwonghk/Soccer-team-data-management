@@ -1,15 +1,25 @@
 package ui;
 
-import model.Player;
-import model.PlayersDeposits;
-import model.Team;
+import model.*;
+import org.json.JSONObject;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class PlayerApp {
 
-    private Team smallTeam;
-    private PlayersDeposits playersDepos;
+    private static final String JSON_STORE = "./data/workroom.json";
+
+    private WorkRoom workRoom;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
+    private List<Thingy> thingyList;
+
     private Scanner input;
 
     private String name;
@@ -20,7 +30,13 @@ public class PlayerApp {
     private String position;
 
     // EFFECT: run the player app
-    public PlayerApp() {
+    public PlayerApp() throws FileNotFoundException {
+        input = new Scanner(System.in);
+        workRoom = new WorkRoom("Alex's workroom");
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
+
+
         runPlayer();
     }
 
@@ -30,7 +46,7 @@ public class PlayerApp {
         boolean keepGoing = true;
         String command = null;
 
-        init();
+
         input = new Scanner(System.in);
 
         while (keepGoing) {
@@ -45,6 +61,7 @@ public class PlayerApp {
                 processCommand(command);
             }
         }
+        System.out.println("finish building line-up");
     }
 
 
@@ -52,9 +69,10 @@ public class PlayerApp {
     // EFFECT: display a list of options to choose from by the user
     private void displayMenu() {
         System.out.println("\nSelect from:");
-        System.out.println("\ta -> Add/Remove Player to/from Players Deposits");
         System.out.println("\tm -> Modify current team");
         System.out.println("\td -> display some current team's statistics");
+        System.out.println("\tl -> load data stored previously");
+        System.out.println("\ts -> save current modifications to the data");
         System.out.println("\tq -> quit");
     }
 
@@ -62,40 +80,20 @@ public class PlayerApp {
 
     // MODIFIES: this
     private void processCommand(String command) {
-        if (command.equals("a")) {
-            addRemoveFromDeposit();
-        } else if (command.equals("m")) {
+        if (command.equals("m")) {
             modifyCurrentTeam();
         } else if (command.equals("d")) {
             displayStatistics();
+        } else if (command.equals("l")) {
+            loadWorkRoom();
+        } else if (command.equals("s")) {
+            saveWorkRoom();
         }
     }
 
-    // EFFECT: initialize an empty team and an empty player deposits
-    public void init() {
-        smallTeam = new Team();
-        playersDepos = new PlayersDeposits();
-    }
-
-
-    // EFFECT: add or remove a player from Squad
-    public void addRemoveFromDeposit() {
-        System.out.println("Add or remove a player from Players deposits. ");
-        System.out.println("a to add, r to remove \n");
-        String command;
-        Scanner scan = new Scanner(System.in);
-        command = scan.next();
-        command = command.toLowerCase();
-        if (command.equals("a")) {
-            addingAnPlayerToSquadOrTeamDeposit("PlayerDeposits");
-        } else if (command.equals("r")) {
-            removingAnPlayerFromSquadOrDeposit("PlayerDeposits");
-        }
-
-    }
 
     // EFFECT: add a player to the PlayersDeposits or currentTeam
-    public void addingAnPlayerToSquadOrTeamDeposit(String type) {
+    public void addingAnPlayerToTeam() {
         System.out.println("Please enter Name, goals, conceal, game won, game lost, position"
                 + "of the player");
         Scanner scan = new Scanner(System.in);
@@ -112,26 +110,26 @@ public class PlayerApp {
         gameLost = scan.nextInt();
         System.out.println("Please enter position: Striker, defender, midfield, goalkeeper\n");
         position = scan.next();
-        Player namePlayer = new Player(name, goals, conceal, gameWon, gameLost, position);
-        if (type.equals("PlayerDeposits")) {
-            playersDepos.addPlayer(namePlayer);
-            System.out.println("Player has been added to deposits");
-        } else if (type.equals("currentTeam")) {
-            smallTeam.addPlayerTeam(namePlayer);
-            System.out.println("Player has been added to current team");
-        }
+
+        JSONObject profile = new JSONObject();
+        Thingy newPlayer = new Thingy(name, profile);
+        newPlayer.setAllFieldsOfPlayer(goals,conceal,gameWon,gameLost, position);
+        thingyList.add(newPlayer);
+
     }
 
     // EFFECT: remove a player from the Player deposits
-    public void removingAnPlayerFromSquadOrDeposit(String type) {
+    public void removingAnPlayerFromTeam() {
         System.out.println("Enter the name of the player you want to remove from player deposits \n");
         Scanner scan = new Scanner(System.in);
         String name = scan.next();
-        if (type.equals("PlayerDeposits")) {
-            playersDepos.removePlayer(name);
-        } else if (type.equals("currentTeam")) {
-            smallTeam.removePlayerTeam(name);
+        List<Thingy> listPlayers = new ArrayList<>();
+        for (Thingy thingy : thingyList) {
+            if (!thingy.getThingName().equals(name)) {
+                listPlayers.add(thingy);
+            }
         }
+        thingyList = listPlayers;
     }
 
     // EFFECT: add or remove players in the current team
@@ -142,12 +140,12 @@ public class PlayerApp {
         String command = scan.next();
         if (command.equals("a")) {
             System.out.println("player to add");
-            addingAnPlayerToSquadOrTeamDeposit("currentTeam");
+            addingAnPlayerToTeam();
         } else if (command.equals("m")) {
             System.out.println("modify a player");
             editPlayer();
         } else if (command.equals("r")) {
-            removingAnPlayerFromSquadOrDeposit("currentTeam");
+            removingAnPlayerFromTeam();
         }
     }
 
@@ -155,51 +153,57 @@ public class PlayerApp {
     public void editPlayer() {
         System.out.println("Enter name of player you want to edit: \n");
         System.out.println("List of current players: \n");
+        System.out.println("Players that could you edit are: ");
 
-        for (String p : smallTeam.listPlayer()) {
-            System.out.println(p + "\n");
+        for (Thingy t : thingyList) {
+            System.out.println(t.getThingName() + "\n");
         }
 
         System.out.println("Enter name of player to be edit: ");
         Scanner scan = new Scanner(System.in);
         String playerName = scan.next();
-        Player toEdit;
-        toEdit = smallTeam.returnPlayerCurrentTeam(playerName);
 
-        playerEditing(toEdit);
+        playerEditing(playerName);
 
     }
 
     // EFFECT: A helper for the editPlayer function.
-    public void playerEditing(Player player) {
+    public void playerEditing(String playerName) {
         Boolean keepGoing = true;
         String choices = null;
         Integer updateNumb = 0;
-        helperPlayerEditting(true, choices, updateNumb, player);
+        JSONObject playerProfileObjectToEditted = new JSONObject();
+        for (Thingy thing : thingyList) {
+            if (thing.getThingName().equals(playerName)) {
+                playerProfileObjectToEditted =  thing.returnPlayerProfile();
+            }
+        }
+
+        helperPlayerEditting(true, choices, updateNumb, playerProfileObjectToEditted);
     }
 
     // EFFECT: A helper to shorten the playerEditting function (note: since originally function
     //        exceeds the limit set by checkstyle)
-    public void helperPlayerEditting(boolean going, String choices, Integer updateNumb, Player player) {
+    public void helperPlayerEditting(boolean going, String choices, Integer updateNumb, JSONObject profile) {
         while (going) {
             System.out.println("Select player's aspect that you want to update: \n "
                     + "g goals, c conceal, w games won, l games lost, p pos, q quit");
             choices = input.next();
             if (choices.equals("g")) {
                 updateNumb = input.nextInt();
-                player.setGoals(updateNumb);
+                profile.put("goals", updateNumb);
             } else if (choices.equals("c")) {
                 updateNumb = input.nextInt();
-                player.setConceal(updateNumb);
+                profile.put("conceals", updateNumb);
             } else if (choices.equals("w")) {
                 updateNumb = input.nextInt();
-                player.setWon(updateNumb);
+                profile.put("gameWon", updateNumb);
             } else if (choices.equals("l")) {
                 updateNumb = input.nextInt();
-                player.setLost(updateNumb);
+                profile.put("gameLost", updateNumb);
             } else if (choices.equals("p")) {
                 choices = input.next();
-                player.setPosition(choices);
+                profile.put("position", choices);
             } else if (choices.equals("q")) {
                 going = false;
             }
@@ -209,23 +213,59 @@ public class PlayerApp {
     //EFFECT: show player's statistics
     public void displayStatistics() {
         System.out.println("Please enter the player's name to display his stats: \n");
+        System.out.println("the list of players currently on the team are: \n");
+        for (Thingy t: thingyList) {
+            System.out.println(t.getThingName() + "\n");
+        }
         String name = null;
+        JSONObject playerToShow = null;
         Scanner scan = new Scanner(System.in);
         name = scan.next();
-        showPlayer(name);
+
+        for (Thingy thingy: thingyList) {
+            if (thingy.getThingName().equals(name)) {
+                playerToShow = thingy.returnPlayerProfile();
+            }
+        }
+        showPlayer(playerToShow);
     }
 
     // EFFECT: A helper to show player's statistics
-    public void showPlayer(String name) {
-        Player p;
-        p = smallTeam.returnPlayerCurrentTeam(name);
-        System.out.println("Player's Name: " + p.getName() + "\n ");
-        System.out.println("Player's Position: " + p.getPosition() + "\n ");
-        System.out.println("Player's Goals: " + p.getGoals() + "\n ");
-        System.out.println("Player's Conceal: " + p.getConceal() + "\n ");
-        System.out.println("Player's Game won: " + p.getGameWon() + "\n ");
-        System.out.println("Player's Game lost: " + p.getGameLost() + "\n ");
+    public void showPlayer(JSONObject playerProfile) {
+
+        System.out.println("Player's Position: " + playerProfile.getString("position") + "\n ");
+        System.out.println("Player's Goals: " + playerProfile.getInt("goals") + "\n ");
+        System.out.println("Player's Conceal: " + playerProfile.getInt("conceals") + "\n ");
+        System.out.println("Player's Game won: " + playerProfile.getInt("gameWon") + "\n ");
+        System.out.println("Player's Game lost: " + playerProfile.getInt("gameLost") + "\n ");
     }
+
+
+    // EFFECTS: saves the workroom to file
+    private void saveWorkRoom() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(workRoom);
+            jsonWriter.close();
+            System.out.println("Saved " + workRoom.getName() + " to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+
+    // MODIFIES: this
+    // EFFECTS: loads workroom from file
+    private void loadWorkRoom() {
+        try {
+            workRoom = jsonReader.read();
+            thingyList = workRoom.getThingies();
+            System.out.println("Loaded " + workRoom.getName() + " from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
+    }
+
 
 }
 

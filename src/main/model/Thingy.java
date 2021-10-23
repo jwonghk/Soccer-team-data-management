@@ -1,0 +1,137 @@
+package model;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
+// Represents a thingy having a name and a category
+// thingy actually represents player in my dataset, and name of the player will
+//    be used as a Key to the JSONObject with player name as key, and playerProfile as value
+public class Thingy implements Writable {
+    private String name;
+    private Integer gameWon;
+    private Integer gameLost;
+    private Integer goals;
+    private Integer conceal;
+    private String position;
+
+    private JSONObject playerProfile;
+
+
+    // EFFECTS: constructs a thingy with a name and playerProfile
+    public Thingy(String name, JSONObject playerProfile) {
+        this.name = name;
+        this.playerProfile = playerProfile;
+
+    }
+
+
+    // EFFECT: return the name of player
+    public String getThingName() {
+        return this.name;
+    }
+
+    // EFFECTS: return playerprofile
+    public JSONObject returnPlayerProfile() {
+        return this.playerProfile;
+    }
+
+    //EFFECT: put the key and value into the playerProfile JSONObject
+    public void setPlayerProfile() {
+        playerProfile.put("goals", this.goals);
+        playerProfile.put("conceals", this.conceal);
+        playerProfile.put("gameWon", this.gameWon);
+        playerProfile.put("gameLost", this.gameLost);
+        playerProfile.put("position", this.position);
+
+    }
+
+    // EFFECTS: returns string representation of this thingy
+//    public String toString() {
+//        return position + ": " + name;
+//    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put(name, playerProfile);
+        return json;
+    }
+
+
+    // MODIFIES: this
+    // EFFECT: set all fields at once
+    public void setAllFieldsOfPlayer(Integer goals,Integer conceal,Integer gameWon,Integer gameLost,
+                                     String position) {
+        setGoals(goals);
+        setConceal(conceal);
+        setGameWon(gameWon);
+        setGameLost(gameLost);
+        setPosition(position);
+        setPlayerProfile();
+    }
+
+    // MODIFIES: this
+    // EFFECT: change the goals field of Thingy
+    public void setGoals(Integer goals) {
+        this.goals = goals;
+    }
+
+    // MODIFIES: this
+    // EFFECT: change the conceal field of Thingy
+    public void setConceal(Integer conceals) {
+        this.conceal = conceals;
+    }
+
+    // MODIFIES: this
+    // EFFECT: change the gameWon field of Thingy
+    public void setGameWon(Integer gameWon) {
+        this.gameWon = gameWon;
+    }
+
+    // MODIFIES: this
+    // EFFECT: change the gameLost field of Thingy
+    public void setGameLost(Integer gameLost) {
+        this.gameLost = gameLost;
+    }
+
+    // MODIFIES: this
+    // EFFECT: change the position field of Thingy
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
+
+
+    // EFFECT: Return the name of the player
+    public String getName() {
+        return name;
+    }
+
+    // EFFECT: Return number of goals of the player
+    public Integer getGoals() {
+        return playerProfile.getInt("goals");
+    }
+
+    // EFFECT: Return the number of conceals of the player
+    public Integer getConceal() {
+        return playerProfile.getInt("conceals");
+    }
+
+    // EFFECT: Return the number of game won of the player
+    public Integer getGameWon() {
+        return playerProfile.getInt("gameWon");
+    }
+
+    // EFFECT: Return the number of game lost of the player
+    public Integer getGameLost() {
+        return playerProfile.getInt("gameLost");
+    }
+
+    // EFFECT: Return the position of the player
+    public String getPosition() {
+        return playerProfile.getString("position");
+    }
+
+
+}
