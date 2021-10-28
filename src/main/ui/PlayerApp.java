@@ -123,13 +123,16 @@ public class PlayerApp {
         System.out.println("Enter the name of the player you want to remove from player deposits \n");
         Scanner scan = new Scanner(System.in);
         String name = scan.next();
-        List<Thingy> listPlayers = new ArrayList<>();
+        List<Thingy> listPlayers = new ArrayList<Thingy>();
         for (Thingy thingy : thingyList) {
             if (!thingy.getThingName().equals(name)) {
                 listPlayers.add(thingy);
             }
         }
-        thingyList = listPlayers;
+        workRoom.setThingies(listPlayers);
+
+        System.out.println(workRoom.getThingies());
+
     }
 
     // EFFECT: add or remove players in the current team

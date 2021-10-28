@@ -11,7 +11,7 @@
             "gameWon": 11,
             "conceals": 2,
             "position": "striker",
-            "goals": 5,
+            "goals": 100,
             "gameLost": 2
         }},
         {"gomez": {
@@ -27,6 +27,20 @@
             "position": "striker",
             "goals": 19,
             "gameLost": 5
+        }},
+        {"Cruz": {
+            "gameWon": 100,
+            "conceals": 3,
+            "position": "Striker",
+            "goals": 10,
+            "gameLost": 2
+        }},
+        {"samson": {
+            "gameWon": 3,
+            "conceals": 19,
+            "position": "defender",
+            "goals": 18,
+            "gameLost": 1
         }}
     ],
     "name": "Alex's workroom"

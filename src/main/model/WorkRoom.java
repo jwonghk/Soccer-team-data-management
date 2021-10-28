@@ -16,7 +16,7 @@ public class WorkRoom implements Writable {
     // EFFECTS: constructs workroom with a name and empty list of thingies
     public WorkRoom(String name) {
         this.name = name;
-        thingies = new ArrayList<>();
+        this.thingies = new ArrayList<>();
     }
 
     // Effect: return name of player
@@ -34,6 +34,12 @@ public class WorkRoom implements Writable {
     public List<Thingy> getThingies() {
         return thingies;
     }
+
+    public void setThingies(List<Thingy> thingyList) {
+        this.thingies = thingyList;
+    }
+
+
 
     // EFFECTS: returns number of thingies in this workroom
     public int numThingies() {
