@@ -37,12 +37,16 @@ public class PlayerApp {
         jsonReader = new JsonReader(JSON_STORE);
 
 
-        runPlayer();
+        try {
+            runPlayer();
+        } catch (Exception exc) {
+            System.out.println("Illegal value exception entered");
+        }
     }
 
     // MODIFIES: this
     // EFFECT: process user input
-    public void runPlayer() {
+    public void runPlayer() throws Exception {
         boolean keepGoing = true;
         String command = null;
 
@@ -79,7 +83,7 @@ public class PlayerApp {
 
 
     // MODIFIES: this
-    private void processCommand(String command) {
+    private void processCommand(String command) throws Exception {
         if (command.equals("m")) {
             modifyCurrentTeam();
         } else if (command.equals("d")) {
@@ -93,7 +97,7 @@ public class PlayerApp {
 
 
     // EFFECT: add a player to the PlayersDeposits or currentTeam
-    public void addingAnPlayerToTeam() {
+    public void addingAnPlayerToTeam() throws Exception {
         System.out.println("Please enter Name, goals, conceal, game won, game lost, position"
                 + "of the player");
         Scanner scan = new Scanner(System.in);
@@ -136,7 +140,7 @@ public class PlayerApp {
     }
 
     // EFFECT: add or remove players in the current team
-    public void modifyCurrentTeam() {
+    public void modifyCurrentTeam() throws Exception {
         System.out.println("Press a to add a player to the "
                 + "team, m to modify a player, and r to remove a player:");
         Scanner scan = new Scanner(System.in);
@@ -158,7 +162,7 @@ public class PlayerApp {
         System.out.println("List of current players: \n");
         System.out.println("Players that could you edit are: ");
 
-        for (Thingy t : thingyList) {
+        for (Thingy t : workRoom.getThingies()) {
             System.out.println(t.getThingName() + "\n");
         }
 
@@ -176,7 +180,7 @@ public class PlayerApp {
         String choices = null;
         Integer updateNumb = 0;
         JSONObject playerProfileObjectToEditted = new JSONObject();
-        for (Thingy thing : thingyList) {
+        for (Thingy thing : workRoom.getThingies()) {
             if (thing.getThingName().equals(playerName)) {
                 playerProfileObjectToEditted =  thing.returnPlayerProfile();
             }
@@ -217,7 +221,7 @@ public class PlayerApp {
     public void displayStatistics() {
         System.out.println("Please enter the player's name to display his stats: \n");
         System.out.println("the list of players currently on the team are: \n");
-        for (Thingy t: thingyList) {
+        for (Thingy t: workRoom.getThingies()) {
             System.out.println(t.getThingName() + "\n");
         }
         String name = null;
@@ -225,7 +229,7 @@ public class PlayerApp {
         Scanner scan = new Scanner(System.in);
         name = scan.next();
 
-        for (Thingy thingy: thingyList) {
+        for (Thingy thingy: workRoom.getThingies()) {
             if (thingy.getThingName().equals(name)) {
                 playerToShow = thingy.returnPlayerProfile();
             }

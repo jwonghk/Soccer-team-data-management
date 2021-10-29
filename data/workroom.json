@@ -1,26 +1,5 @@
 {
     "players": [
-        {"bierhoff": {
-            "gameWon": 0,
-            "conceals": 77,
-            "position": "striker",
-            "goals": 77,
-            "gameLost": 0
-        }},
-        {"moller": {
-            "gameWon": 11,
-            "conceals": 2,
-            "position": "striker",
-            "goals": 100,
-            "gameLost": 2
-        }},
-        {"gomez": {
-            "gameWon": 27,
-            "conceals": 77,
-            "position": "striker",
-            "goals": 100,
-            "gameLost": 5
-        }},
         {"batistuta": {
             "gameWon": 23,
             "conceals": 1,
@@ -41,7 +20,21 @@
             "position": "defender",
             "goals": 18,
             "gameLost": 1
+        }},
+        {"smith": {
+            "gameWon": 10,
+            "conceals": 10,
+            "position": "striker",
+            "goals": 1000,
+            "gameLost": 10
+        }},
+        {"Klinsmen": {
+            "gameWon": 5,
+            "conceals": 0,
+            "position": "striker",
+            "goals": 188,
+            "gameLost": 5
         }}
     ],
-    "name": "Alex's workroom"
+    "name": "Soccer Team workroom"
 }

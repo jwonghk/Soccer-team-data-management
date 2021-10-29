@@ -62,7 +62,7 @@ public class Thingy implements Writable {
     // MODIFIES: this
     // EFFECT: set all fields at once
     public void setAllFieldsOfPlayer(Integer goals,Integer conceal,Integer gameWon,Integer gameLost,
-                                     String position) {
+                                     String position) throws Exception {
         setGoals(goals);
         setConceal(conceal);
         setGameWon(gameWon);
@@ -73,64 +73,76 @@ public class Thingy implements Writable {
 
     // MODIFIES: this
     // EFFECT: change the goals field of Thingy
-    public void setGoals(Integer goals) {
+    public void setGoals(Integer goals) throws Exception {
+        if (goals < 0) {
+            throw new Exception();
+        }
+
         this.goals = goals;
     }
 
     // MODIFIES: this
     // EFFECT: change the conceal field of Thingy
-    public void setConceal(Integer conceals) {
+    public void setConceal(Integer conceals) throws Exception {
+        if (conceals < 0) {
+            throw new Exception();
+        }
         this.conceal = conceals;
     }
 
     // MODIFIES: this
     // EFFECT: change the gameWon field of Thingy
-    public void setGameWon(Integer gameWon) {
+    public void setGameWon(Integer gameWon) throws Exception {
+        if (gameWon < 0) {
+            throw new Exception();
+        }
         this.gameWon = gameWon;
     }
 
     // MODIFIES: this
     // EFFECT: change the gameLost field of Thingy
-    public void setGameLost(Integer gameLost) {
+    public void setGameLost(Integer gameLost) throws Exception {
+        if (gameLost < 0) {
+            throw new Exception();
+        }
         this.gameLost = gameLost;
     }
 
     // MODIFIES: this
     // EFFECT: change the position field of Thingy
-    public void setPosition(String position) {
+    public void setPosition(String position) throws Exception {
+        if (!(position.equals("midfield")
+                || position.equals("striker")
+                || position.equals("defender") || position.equals("goal keeper"))) {
+            throw new Exception();
+        }
         this.position = position;
     }
 
 
-
-    // EFFECT: Return the name of the player
-    public String getName() {
-        return name;
-    }
-
     // EFFECT: Return number of goals of the player
     public Integer getGoals() {
-        return playerProfile.getInt("goals");
+        return this.goals;
     }
 
     // EFFECT: Return the number of conceals of the player
     public Integer getConceal() {
-        return playerProfile.getInt("conceals");
+        return this.conceal;
     }
 
     // EFFECT: Return the number of game won of the player
     public Integer getGameWon() {
-        return playerProfile.getInt("gameWon");
+        return this.gameWon;
     }
 
     // EFFECT: Return the number of game lost of the player
     public Integer getGameLost() {
-        return playerProfile.getInt("gameLost");
+        return this.gameLost;
     }
 
     // EFFECT: Return the position of the player
     public String getPosition() {
-        return playerProfile.getString("position");
+        return this.position;
     }
 
 

@@ -27,3 +27,8 @@ some of my favorite players and set a team
   goals concealed, game won, game lost, position
 - Edit a player's goals scored, goals concealed, game won,
   game lost, position status
+- I want to be able to retrieve the players that
+  have entered to the database from last time and do
+  modifications to them if needed
+- I want to be able to save the players that I have
+  input to the database this time
