@@ -10,6 +10,9 @@ import java.nio.file.Paths;
 import java.util.Set;
 import java.util.stream.Stream;
 
+// citation: codes here are borrowed or modified based on the demo application
+//          from CPSC 210
+//   https://edge.edx.org/courses/course-v1:UBC+CPSC210+all/courseware
 import org.json.*;
 
 // Represents a reader that reads workroom from JSON data stored in file

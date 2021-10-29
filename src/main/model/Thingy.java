@@ -4,6 +4,10 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.Writable;
 
+// citation: codes here are borrowed or modified based on the demo application
+//          from CPSC 210
+//   https://edge.edx.org/courses/course-v1:UBC+CPSC210+all/courseware
+
 // Represents a thingy having a name and a category
 // thingy actually represents player in my dataset, and name of the player will
 //    be used as a Key to the JSONObject with player name as key, and playerProfile as value

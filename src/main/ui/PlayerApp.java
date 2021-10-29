@@ -15,6 +15,7 @@ import java.util.Scanner;
 //          from CPSC 210
 //   https://edge.edx.org/courses/course-v1:UBC+CPSC210+all/courseware
 
+// this class starts the application and will also load, and save workRoom to .json file
 public class PlayerApp {
 
     private static final String JSON_STORE = "./data/workroom.json";
@@ -100,7 +101,7 @@ public class PlayerApp {
     }
 
 
-    // EFFECT: add a player to the PlayersDeposits or currentTeam
+    // EFFECT: add a player to the currentTeam
     public void addingAnPlayerToTeam() throws Exception {
         System.out.println("Please enter Name, goals, conceal, game won, game lost, position"
                 + "of the player");
@@ -126,7 +127,7 @@ public class PlayerApp {
 
     }
 
-    // EFFECT: remove a player from the Player deposits
+    // EFFECT: remove a player from the team
     public void removingAnPlayerFromTeam() {
         System.out.println("Enter the name of the player you want to remove from player deposits \n");
         Scanner scan = new Scanner(System.in);

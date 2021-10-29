@@ -10,6 +10,10 @@ import java.util.List;
 
 // Represents a workroom having a collection of thingies
 // for managing workoom's field and return fields value
+
+// citation: codes here are borrowed or modified based on the demo application
+//          from CPSC 210
+//   https://edge.edx.org/courses/course-v1:UBC+CPSC210+all/courseware
 public class WorkRoom implements Writable {
     private String name;
     private List<Thingy> thingies;

@@ -5,6 +5,9 @@ import org.json.JSONObject;
 
 
 import java.io.*;
+// citation: codes here are borrowed or modified based on the demo application
+//          from CPSC 210
+//   https://edge.edx.org/courses/course-v1:UBC+CPSC210+all/courseware
 
 // Represents a writer that writes JSON representation of workroom to file
 public class JsonWriter {

@@ -8,11 +8,11 @@
             "gameLost": 5
         }},
         {"Cruz": {
-            "gameWon": 100,
-            "conceals": 3,
-            "position": "Striker",
-            "goals": 10,
-            "gameLost": 2
+            "gameWon": 0,
+            "conceals": 0,
+            "position": "striker",
+            "goals": 88,
+            "gameLost": 0
         }},
         {"Klinsmen": {
             "gameWon": 5,
@@ -21,12 +21,12 @@
             "goals": 188,
             "gameLost": 5
         }},
-        {"kim": {
-            "gameWon": 1,
-            "conceals": 3,
-            "position": "defender",
-            "goals": 100,
-            "gameLost": 1
+        {"Schevechenko": {
+            "gameWon": 29,
+            "conceals": 0,
+            "position": "striker",
+            "goals": 33,
+            "gameLost": 2
         }}
     ],
     "name": "Soccer Team workroom"

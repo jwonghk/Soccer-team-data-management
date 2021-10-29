@@ -2,6 +2,10 @@ package ui;
 
 import java.io.FileNotFoundException;
 
+
+// citation: codes here are borrowed or modified based on the demo application
+//          from CPSC 210
+//   https://edge.edx.org/courses/course-v1:UBC+CPSC210+all/courseware
 public class Main {
     public static void main(String[] args) {
         try {
