@@ -11,6 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+// citation: codes here are borrowed or modified based on the demo application
+//          from CPSC 210
+//   https://edge.edx.org/courses/course-v1:UBC+CPSC210+all/courseware
+
 public class PlayerApp {
 
     private static final String JSON_STORE = "./data/workroom.json";

@@ -1,0 +1,19 @@
+{
+    "players": [
+        {"Player1": {
+            "gameWon": 7,
+            "conceals": 5,
+            "position": "striker",
+            "goals": 3,
+            "gameLost": 9
+        }},
+        {"Player2": {
+            "gameWon": 6,
+            "conceals": 4,
+            "position": "defender",
+            "goals": 2,
+            "gameLost": 8
+        }}
+    ],
+    "name": "My Soccer room"
+}
