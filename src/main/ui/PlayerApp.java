@@ -128,7 +128,7 @@ public class PlayerApp {
         Scanner scan = new Scanner(System.in);
         String name = scan.next();
         List<Thingy> listPlayers = new ArrayList<Thingy>();
-        for (Thingy thingy : thingyList) {
+        for (Thingy thingy : workRoom.getThingies()) {
             if (!thingy.getThingName().equals(name)) {
                 listPlayers.add(thingy);
             }

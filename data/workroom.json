@@ -14,26 +14,19 @@
             "goals": 10,
             "gameLost": 2
         }},
-        {"samson": {
-            "gameWon": 3,
-            "conceals": 19,
-            "position": "defender",
-            "goals": 18,
-            "gameLost": 1
-        }},
-        {"smith": {
-            "gameWon": 10,
-            "conceals": 10,
-            "position": "striker",
-            "goals": 1000,
-            "gameLost": 10
-        }},
         {"Klinsmen": {
             "gameWon": 5,
             "conceals": 0,
             "position": "striker",
             "goals": 188,
             "gameLost": 5
+        }},
+        {"kim": {
+            "gameWon": 1,
+            "conceals": 3,
+            "position": "defender",
+            "goals": 100,
+            "gameLost": 1
         }}
     ],
     "name": "Soccer Team workroom"

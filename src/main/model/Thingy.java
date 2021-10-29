@@ -19,6 +19,8 @@ public class Thingy implements Writable {
 
 
     // EFFECTS: constructs a thingy with a name and playerProfile
+    // comments: thingy actually is an object that represents a player
+    //           together with his/her profile status
     public Thingy(String name, JSONObject playerProfile) {
         this.name = name;
         this.playerProfile = playerProfile;
@@ -72,7 +74,7 @@ public class Thingy implements Writable {
     }
 
     // MODIFIES: this
-    // EFFECT: change the goals field of Thingy
+    // EFFECT: change the goals field of Thingy (thingy is just a player object)
     public void setGoals(Integer goals) throws Exception {
         if (goals < 0) {
             throw new Exception();
@@ -82,7 +84,7 @@ public class Thingy implements Writable {
     }
 
     // MODIFIES: this
-    // EFFECT: change the conceal field of Thingy
+    // EFFECT: change the conceal field of Thingy (thingy is just a player object)
     public void setConceal(Integer conceals) throws Exception {
         if (conceals < 0) {
             throw new Exception();
@@ -91,7 +93,7 @@ public class Thingy implements Writable {
     }
 
     // MODIFIES: this
-    // EFFECT: change the gameWon field of Thingy
+    // EFFECT: change the gameWon field of Thingy (thingy is just a player object)
     public void setGameWon(Integer gameWon) throws Exception {
         if (gameWon < 0) {
             throw new Exception();
@@ -100,7 +102,7 @@ public class Thingy implements Writable {
     }
 
     // MODIFIES: this
-    // EFFECT: change the gameLost field of Thingy
+    // EFFECT: change the gameLost field of Thingy (thingy is just a player object)
     public void setGameLost(Integer gameLost) throws Exception {
         if (gameLost < 0) {
             throw new Exception();
@@ -109,7 +111,7 @@ public class Thingy implements Writable {
     }
 
     // MODIFIES: this
-    // EFFECT: change the position field of Thingy
+    // EFFECT: change the position field of Thingy (thingy is just a player object)
     public void setPosition(String position) throws Exception {
         if (!(position.equals("midfield")
                 || position.equals("striker")

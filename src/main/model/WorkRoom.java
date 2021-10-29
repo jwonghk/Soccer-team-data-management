@@ -9,6 +9,7 @@ import java.util.Collections;
 import java.util.List;
 
 // Represents a workroom having a collection of thingies
+// for managing workoom's field and return fields value
 public class WorkRoom implements Writable {
     private String name;
     private List<Thingy> thingies;
@@ -35,8 +36,10 @@ public class WorkRoom implements Writable {
         return thingies;
     }
 
-    public void setThingies(List<Thingy> thingyList) {
-        this.thingies = thingyList;
+    // EFFECT: set the thingies field
+    // MODIFIES: this, PlayerList
+    public void setThingies(List<Thingy> playerList) {
+        this.thingies = playerList;
     }
 
 
