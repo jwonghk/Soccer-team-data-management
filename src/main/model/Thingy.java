@@ -27,7 +27,17 @@ public class Thingy implements Writable {
     //           together with his/her profile status
     public Thingy(String name, JSONObject playerProfile) {
         this.name = name;
+        this.gameWon = playerProfile.getInt("gameWon");
+        this.gameLost = playerProfile.getInt("gameLost");
+        this.goals = playerProfile.getInt("goals");
+        this.conceal = playerProfile.getInt("conceals");
+        this.position = playerProfile.getString("position");
         this.playerProfile = playerProfile;
+        setPlayerProfile();
+    }
+
+    // Create a new Thingy here just for adding new Player
+    public Thingy(String name, JSONObject playerProfile, boolean newOrNot) {
 
     }
 
@@ -85,6 +95,13 @@ public class Thingy implements Writable {
         }
 
         this.goals = goals;
+        setPlayerProfile();
+    }
+
+    // MODIFIES: this
+    // EFFECT: set the name of Thingy (thingy is a player)
+    public void setName(String name) {
+        this.name = name;
     }
 
     // MODIFIES: this
@@ -94,6 +111,7 @@ public class Thingy implements Writable {
             throw new Exception();
         }
         this.conceal = conceals;
+        setPlayerProfile();
     }
 
     // MODIFIES: this
@@ -103,6 +121,7 @@ public class Thingy implements Writable {
             throw new Exception();
         }
         this.gameWon = gameWon;
+        setPlayerProfile();
     }
 
     // MODIFIES: this
@@ -112,6 +131,7 @@ public class Thingy implements Writable {
             throw new Exception();
         }
         this.gameLost = gameLost;
+        setPlayerProfile();
     }
 
     // MODIFIES: this
@@ -123,6 +143,7 @@ public class Thingy implements Writable {
             throw new Exception();
         }
         this.position = position;
+        setPlayerProfile();
     }
 
 

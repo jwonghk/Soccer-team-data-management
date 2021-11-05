@@ -9,7 +9,9 @@ import java.io.FileNotFoundException;
 public class Main {
     public static void main(String[] args) {
         try {
-            new PlayerApp();
+            //PlayerApp playerApp = new PlayerApp();
+            new GatherInformation();
+
         } catch (FileNotFoundException fle) {
             System.out.println("Unable to run application: file not found");
         }

@@ -5,6 +5,8 @@ import org.json.JSONObject;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,9 +18,9 @@ import java.util.Scanner;
 //   https://edge.edx.org/courses/course-v1:UBC+CPSC210+all/courseware
 
 // this class starts the application and will also load, and save workRoom to .json file
-public class PlayerApp {
+public class PlayerApp implements ActionListener {
 
-    private static final String JSON_STORE = "./data/workroom.json";
+    private static final String JSON_STORE = "./data/jamesworkroom.json";
 
     private WorkRoom workRoom;
     private JsonWriter jsonWriter;
@@ -59,7 +61,7 @@ public class PlayerApp {
         input = new Scanner(System.in);
 
         while (keepGoing) {
-            displayMenu();
+            //displayMenu();
             command = input.next();
             command = command.toLowerCase();
 
@@ -279,6 +281,10 @@ public class PlayerApp {
     }
 
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+    }
 }
 
 
