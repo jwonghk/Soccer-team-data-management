@@ -17,6 +17,8 @@ public class GatherInformation extends JFrame implements ActionListener {
     WorkRoom workRoom;
     Thingy player = null;
     Thingy newPlayer = null;
+    JSONObject playerProfileNewPlayer = new JSONObject();
+    String playerNameOfNewlyAddedPlayer;
     ManageInformation manager;
 
     ActionEvent actionEvent;
@@ -184,19 +186,18 @@ public class GatherInformation extends JFrame implements ActionListener {
             public void actionPerformed(ActionEvent event) {
                 JTextField jtextField = (JTextField) event.getSource();
                 String textToDisplay = jtextField.getText();
+                customerName = textToDisplay;
                 if (event.getSource().equals(newPlayerName)) {
                     JTextField newPlayerNameField = (JTextField) event.getSource();
-                    String playerName = newPlayerNameField.getText();
-                    newPlayer = new Thingy(playerName, new JSONObject());
-                    newPlayer.setName(playerName);
+                    playerNameOfNewlyAddedPlayer = newPlayerNameField.getText();
                     statusMessageArea.setText("New Player's name is being added");
+                } else if (event.getSource().equals(jtf)) {
+                    informationMessageArea.setText("Hello " + textToDisplay + "\n");
+                    informationMessageArea.append("If you have been here: please click "
+                            +
+                            "\" Have been here\" on the left \n ");
+                    informationMessageArea.append("Or click \" First time here \" on the left");
                 }
-                customerName = textToDisplay;
-                informationMessageArea.setText("Hello " + textToDisplay + "\n");
-                informationMessageArea.append("If you have been here: please click "
-                        +
-                        "\" Have been here\" on the left \n ");
-                informationMessageArea.append("Or click \" First time here \" on the left");
 
             }
         });
@@ -220,7 +221,7 @@ public class GatherInformation extends JFrame implements ActionListener {
 
                     } else if (event.getSource().equals(newPlayerGoals)) {
                         statusMessageArea.append("\n New Player Goals field is ADDED now");
-                        newPlayer.setGoals(goals);
+                        playerProfileNewPlayer.put("goals", goals);
                     }
                 } catch (Exception exp) {
                     // catch it
@@ -246,7 +247,7 @@ public class GatherInformation extends JFrame implements ActionListener {
 
                     } else if (event.getSource().equals(newPlayerConceals)) {
                         statusMessageArea.append("\n New Player's Conceal field is being ADDED now");
-                        newPlayer.setConceal(conceals);
+                        playerProfileNewPlayer.put("conceals", conceals);
                     }
                 } catch (Exception exp) {
                     // catch it
@@ -270,7 +271,7 @@ public class GatherInformation extends JFrame implements ActionListener {
                         player.setGameWon(gameWon);
                     } else if (event.getSource().equals(newPlayerGameWon)) {
                         statusMessageArea.append("\n New Player's gameWon field is being ADDED now");
-                        newPlayer.setGameWon(gameWon);
+                        playerProfileNewPlayer.put("gameWon", gameWon);
                     }
                 } catch (Exception exp) {
                     // catch it
@@ -295,7 +296,7 @@ public class GatherInformation extends JFrame implements ActionListener {
                         statusMessageArea.append("\n " + player.getGameLost().toString());
                     } else if (event.getSource().equals(newPlayerGameLost)) {
                         statusMessageArea.append("\n New Player's gameLost field is being ADDED now");
-                        newPlayer.setGameLost(gameLost);
+                        playerProfileNewPlayer.put("gameLost", gameLost);
                     }
                 } catch (Exception exp) {
                     // catch it
@@ -317,7 +318,7 @@ public class GatherInformation extends JFrame implements ActionListener {
                         player.setPosition(position);
                     } else if (event.getSource().equals(newPlayerPosition)) {
                         statusMessageArea.append("\n New Player's Position field is being ADDED now");
-                        newPlayer.setPosition(position);
+                        playerProfileNewPlayer.put("position", position);
                     }
                 } catch (Exception exp) {
                     // catch it
@@ -398,7 +399,8 @@ public class GatherInformation extends JFrame implements ActionListener {
             statusMessageArea.append("The player you will be editing is :  \n " + playerToBeEdited);
             playerStatusUpdater(playerToBeEdited);
         } else if (e.getSource().equals(confirmingAddingNewPlayer)) {
-            statusMessageArea.append("New Player has been added!!");
+            statusMessageArea.append("\n New Player has been added!!");
+            newPlayer = new Thingy(playerNameOfNewlyAddedPlayer, playerProfileNewPlayer);
             workRoom.addThingy(newPlayer);
         }
     }

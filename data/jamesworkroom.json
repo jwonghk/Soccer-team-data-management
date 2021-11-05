@@ -8,17 +8,17 @@
             "gameLost": 8
         }},
         {"Cruz": {
-            "gameWon": 19,
+            "gameWon": 29,
             "conceals": 0,
             "position": "midfield",
-            "goals": 6,
-            "gameLost": 11
+            "goals": 22,
+            "gameLost": 4
         }},
         {"Klinsmen": {
-            "gameWon": 23,
+            "gameWon": 25,
             "conceals": 0,
             "position": "striker",
-            "goals": 19,
+            "goals": 26,
             "gameLost": 2
         }},
         {"Schevechenko": {
@@ -27,6 +27,13 @@
             "position": "striker",
             "goals": 33,
             "gameLost": 2
+        }},
+        {"Oliver Bierhoff": {
+            "gameWon": 30,
+            "conceals": 0,
+            "position": "striker",
+            "goals": 32,
+            "gameLost": 3
         }}
     ],
     "name": "Soccer Team workroom"
