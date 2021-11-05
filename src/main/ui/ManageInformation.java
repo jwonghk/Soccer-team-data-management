@@ -1,11 +1,14 @@
 package ui;
 
 import model.*;
+import org.json.JSONObject;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -29,13 +32,18 @@ public class ManageInformation {
     private String position;
 
 
-    public ManageInformation(String roomOwnerName, Boolean haveBeenHere)  {
+    public ManageInformation(String roomOwnerName, Boolean haveBeenHere, GatherInformation gat)  {
 
         jsonDataFileName = "./data/" + roomOwnerName + "workroom.json";
         jsonWriter = new JsonWriter(jsonDataFileName);
         jsonReader = new JsonReader(jsonDataFileName);
         if (haveBeenHere) {
             loadWorkRoom();
+        } else if (!haveBeenHere) {
+            gat.statusMessageArea.setText("Welcome to using our application. \n"
+                    + "A file has been created for you since you are new user!");
+            WorkRoom workRoom = new WorkRoom(roomOwnerName);
+            this.workRoom = workRoom;
         }
 
     }

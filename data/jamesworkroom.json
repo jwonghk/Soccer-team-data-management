@@ -1,25 +1,18 @@
 {
     "players": [
         {"batistuta": {
-            "gameWon": 22,
-            "conceals": 0,
-            "position": "striker",
-            "goals": 33,
-            "gameLost": 8
-        }},
-        {"Cruz": {
-            "gameWon": 29,
+            "gameWon": 21,
             "conceals": 0,
             "position": "midfield",
-            "goals": 22,
-            "gameLost": 4
+            "goals": 29,
+            "gameLost": 7
         }},
         {"Klinsmen": {
-            "gameWon": 25,
+            "gameWon": 29,
             "conceals": 0,
             "position": "striker",
-            "goals": 26,
-            "gameLost": 2
+            "goals": 31,
+            "gameLost": 7
         }},
         {"Schevechenko": {
             "gameWon": 29,

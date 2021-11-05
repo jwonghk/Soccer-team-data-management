@@ -29,6 +29,7 @@ public class WorkRoom implements Writable {
         return name;
     }
 
+
     // MODIFIES: this
     // EFFECTS: adds thingy to this workroom
     public void addThingy(Thingy thingy) {

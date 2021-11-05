@@ -10,8 +10,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 
 
+// This class is mainly to gather the information through the graphical user interface GUI
+// It includes various methods to work with the ManageInformation class which mainly uses
+// to retrieve, save information to the database
 public class GatherInformation extends JFrame implements ActionListener {
 
     WorkRoom workRoom;
@@ -21,7 +26,6 @@ public class GatherInformation extends JFrame implements ActionListener {
     String playerNameOfNewlyAddedPlayer;
     ManageInformation manager;
 
-    ActionEvent actionEvent;
 
 
     JButton jb1 = new JButton("First time here");
@@ -41,13 +45,18 @@ public class GatherInformation extends JFrame implements ActionListener {
     JTextField newPlayerGameLost = new JTextField();
     JTextField newPlayerPosition = new JTextField();
 
+    JTextField removalPlayerNameField = new JTextField("enter the name of player you want to remove");
     JTextArea informationMessageArea;
     JTextArea statusMessageArea;
+
 
     JButton displayCurrentTeamPlayerSummary = new JButton("To display current team");
     JButton modifying = new JButton("To update player's information");
     JButton saveHistory = new JButton("To save your update performed");
-    JButton confirmingAddingNewPlayer = new JButton("Press here for adding the newly inputted Player");
+    JButton confirmingAddingNewPlayer = new JButton("<html> Press here for adding the "
+            + "newly inputted Player when you are done inputting <br> all information"
+            + " of the new player");
+    JButton playerRemoval = new JButton("Click here to remove the player");
 
 
 
@@ -56,12 +65,15 @@ public class GatherInformation extends JFrame implements ActionListener {
     String customerName;
     JLabel jlabel2 = new JLabel();
 
+    // EFFECT: a constructor that also initiates a panel for displaying, manage informations from users
     public GatherInformation() throws FileNotFoundException {
         makePanel();
 
 
     }
 
+    // MODIFIES: this
+    // EFFECT: set out the panel and add the components such as JButton, jtextarea, jtextfield inside it
     public void makePanel() {
         jpanel.setLayout(null);
 
@@ -98,6 +110,8 @@ public class GatherInformation extends JFrame implements ActionListener {
 
     }
 
+    // MODIFIES: this
+    // EFFECT: adding some actionlisteners to the fields of the class
     public void addingListener() {
         modifying.addActionListener(this);
         namefield.addActionListener(this);
@@ -119,8 +133,13 @@ public class GatherInformation extends JFrame implements ActionListener {
         gameLostFieldListen(newPlayerGameLost);
         gameWonFieldListen(newPlayerGameWon);
         positionFieldListen(newPlayerPosition);
+
+        removalPlayerListener(removalPlayerNameField);
     }
 
+    // MODIFIES: this
+    // EFFECT: adding various labels of the fields to the panel, and also
+    //         call the panelforAddingNewPlayer() function
     public void jbuttonJtextPutOnPanel() {
         panelforAddingNewPlayer();
         helperForSetBoundAndAddtoPanel();
@@ -139,6 +158,9 @@ public class GatherInformation extends JFrame implements ActionListener {
 
     }
 
+    // MODIFIES: this
+    // EFFECT: a helper that set the position of the various JButton, JTextfield to the panel
+    //       since if these are called inside another function, it exceeds the 25 lines limits
     public void helperForSetBoundAndAddtoPanel() {
 
         setBoundAndAddtoPanel(jpanel, jb1, 70, 50, 150, 30);
@@ -155,14 +177,26 @@ public class GatherInformation extends JFrame implements ActionListener {
         setBoundAndAddtoPanel(jpanel, positionField, 580, 400, 250, 30);
         setBoundAndAddtoPanel(jpanel, goalsField, 580, 450, 250, 30);
 
+        setBoundAndAddtoPanel(jpanel, playerRemoval, 70, 850, 250, 30);
+        setBoundAndAddtoPanel(jpanel, removalPlayerNameField, 70, 900, 250, 30);
+
     }
 
+    // EFFECT: a helper for adding new player. It set the various JLabel, and also JTextfield
+    //       required to store the user input for the specific field of the new player. It also adds
+    //       actionlistener to those fields. So that gatherinformation class
+    //       will store information from those fields and respond input from those fields
     public void panelforAddingNewPlayer() {
-
         JLabel newPlayerPanelLabel = new JLabel("Panel below is for filling out information for "
                 + "adding New Player only");
+        JLabel instructionsLabel = new JLabel();
+        instructionsLabel.setText("<html> Start by entering your name in the yellow box: "
+                + "<br> then follow the instructions in the message panel <br> on the right");
+        instructionsLabel.setForeground(Color.red);
+        instructionsLabel.setFont(new Font("Serif", Font.PLAIN, 20));
         setBoundAndAddtoPanel(jpanel, newPlayerPanelLabel, 580, 555, 500, 50);
-        setBoundAndAddtoPanel(jpanel, confirmingAddingNewPlayer, 70, 755, 350, 50);
+        setBoundAndAddtoPanel(jpanel, confirmingAddingNewPlayer, 70, 600, 300, 50);
+        setBoundAndAddtoPanel(jpanel, instructionsLabel, 500, 0, 470, 140);
         newPlayerName = new JTextField("New Player's name to be added here");
         newPlayerGoals = new JTextField("New Player's Goals Scored to be added here");
         newPlayerConceals = new JTextField("New Player's number of Conceals to be added here");
@@ -327,6 +361,30 @@ public class GatherInformation extends JFrame implements ActionListener {
         });
     }
 
+    // EFFECT: listens to the player removal text field
+    public void removalPlayerListener(JTextField jtextfield) {
+
+        jtextfield.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JTextField jtf = (JTextField) e.getSource();
+                String nameOfPlayerToRemove = jtf.getText();
+                List<Thingy> thingylist;
+                List<Thingy> newPlayerListAfterRemovalofAPlayer = new ArrayList<Thingy>();
+                thingylist = workRoom.getThingies();
+                for (Thingy thingy : thingylist) {
+                    if (!thingy.getThingName().equals(nameOfPlayerToRemove)) {
+                        newPlayerListAfterRemovalofAPlayer.add(thingy);
+                    }
+                }
+                statusMessageArea.append("\n Player : " + nameOfPlayerToRemove
+                        + " has been removed");
+                workRoom.setThingies(newPlayerListAfterRemovalofAPlayer);
+            }
+        });
+    }
+
 
 
     //EFFECTS: Display an area to display message
@@ -350,6 +408,7 @@ public class GatherInformation extends JFrame implements ActionListener {
 
 
 
+    // EFFECT: This is a function to displace some current players' status within the team
     public void displayCurrentTeam() {
         workRoom = manager.getWorkRoom();
         informationMessageArea.setText("Here are list of your current players and their status: \n ");
@@ -365,8 +424,9 @@ public class GatherInformation extends JFrame implements ActionListener {
 
 
 
-    // EFFECT:
+    // EFFECT: this is a helper that is used during updating existing player's status when editing
     public void playerStatusUpdater(String playerName) {
+        statusMessageArea.append("The player you will be editing is :  \n " + playerName);
         for (Thingy thing : workRoom.getThingies()) {
             if (thing.getThingName().equals(playerName)) {
                 player =  thing;
@@ -381,9 +441,10 @@ public class GatherInformation extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(jb2)) {
-            manager = new ManageInformation(customerName, true);
+            manager = new ManageInformation(customerName, true, this);
         } else if (e.getSource().equals(jb1)) {
-            manager = new ManageInformation(customerName, false);
+            manager = new ManageInformation(customerName, false, this);
+            workRoom = manager.getWorkRoom();
         } else if (e.getSource().equals(saveHistory)) {
             statusMessageArea.append("\n Data being saved");
             manager.setWorkRoom(workRoom);
@@ -396,7 +457,6 @@ public class GatherInformation extends JFrame implements ActionListener {
                     + "player that you want to edit.\n  ");
         } else if (e.getSource().equals(namefield)) {
             String playerToBeEdited = ((JTextField) namefield).getText();
-            statusMessageArea.append("The player you will be editing is :  \n " + playerToBeEdited);
             playerStatusUpdater(playerToBeEdited);
         } else if (e.getSource().equals(confirmingAddingNewPlayer)) {
             statusMessageArea.append("\n New Player has been added!!");

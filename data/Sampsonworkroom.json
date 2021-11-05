@@ -1,0 +1,26 @@
+{
+    "players": [
+        {"Oliver Bierhoff": {
+            "gameWon": 17,
+            "conceals": 0,
+            "position": "midfield",
+            "goals": 8,
+            "gameLost": 5
+        }},
+        {"Christian Ziegler": {
+            "gameWon": 17,
+            "conceals": 0,
+            "position": "midfield",
+            "goals": 8,
+            "gameLost": 5
+        }},
+        {"Andreas Moller": {
+            "gameWon": 18,
+            "conceals": 0,
+            "position": "midfield",
+            "goals": 8,
+            "gameLost": 5
+        }}
+    ],
+    "name": "Sampson"
+}
