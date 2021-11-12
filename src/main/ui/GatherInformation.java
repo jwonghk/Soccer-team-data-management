@@ -4,12 +4,15 @@ import model.WorkRoom;
 import model.Thingy;
 import org.json.JSONObject;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.io.FileNotFoundException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,6 +67,18 @@ public class GatherInformation extends JFrame implements ActionListener {
     JPanel jpanel = new JPanel();
     String customerName;
     JLabel jlabel2 = new JLabel();
+
+
+    ImageIcon summer1998 = new ImageIcon("./data/japan1998.jpg");
+    JLabel sum1998 = new JLabel(summer1998);
+
+    ImageIcon running = new ImageIcon("./data/running.jpg");
+    JLabel run = new JLabel(running);
+
+    ImageIcon scoring = new ImageIcon("/data/scoring.jpg");
+    JLabel score = new JLabel(scoring);
+
+
 
     // EFFECT: a constructor that also initiates a panel for displaying, manage informations from users
     public GatherInformation() throws FileNotFoundException {
@@ -179,6 +194,7 @@ public class GatherInformation extends JFrame implements ActionListener {
 
         setBoundAndAddtoPanel(jpanel, playerRemoval, 70, 850, 250, 30);
         setBoundAndAddtoPanel(jpanel, removalPlayerNameField, 70, 900, 250, 30);
+        setBoundAndAddtoPanel(jpanel, sum1998, 1280,550, 490, 350);
 
     }
 
@@ -231,6 +247,7 @@ public class GatherInformation extends JFrame implements ActionListener {
                             +
                             "\" Have been here\" on the left \n ");
                     informationMessageArea.append("Or click \" First time here \" on the left");
+                    setBoundAndAddtoPanel(jpanel, run, 900, 570, 350,250);
                 }
 
             }
@@ -381,9 +398,12 @@ public class GatherInformation extends JFrame implements ActionListener {
                 statusMessageArea.append("\n Player : " + nameOfPlayerToRemove
                         + " has been removed");
                 workRoom.setThingies(newPlayerListAfterRemovalofAPlayer);
+                setBoundAndAddtoPanel(jpanel, score, 900,570, 350, 300);
             }
         });
     }
+
+
 
 
 
@@ -396,7 +416,7 @@ public class GatherInformation extends JFrame implements ActionListener {
         informationMessageArea.setEditable(false);
 
         statusMessageArea = new JTextArea();
-        statusMessageArea.setBounds(1400, 10, 350,900);
+        statusMessageArea.setBounds(1400, 10, 350,500);
         jpanel.add(statusMessageArea);
     }
 
