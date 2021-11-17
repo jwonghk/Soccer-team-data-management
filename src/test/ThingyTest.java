@@ -7,20 +7,27 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ThingyTest {
 
+    JSONObject p3Profile;
 
     @BeforeEach
     void runBefore() {
-        JSONObject p1Profile = new JSONObject();
-        JSONObject p2Profile = new JSONObject();
-        Thingy thingy1 = new Thingy("P1", p1Profile);
-        Thingy thingy2 = new Thingy("P2", p2Profile);
+//        JSONObject p1Profile = new JSONObject();
+//        JSONObject p2Profile = new JSONObject();
+//        Thingy thingy1 = new Thingy("P1", p1Profile);
+//        Thingy thingy2 = new Thingy("P2", p2Profile);
+        p3Profile = new JSONObject();
+
 
 
     }
 
     @Test
     public void testConstructorAndMethodsInThingy() throws Exception {
-        JSONObject p3Profile = new JSONObject();
+        p3Profile.put("gameWon", 4);
+        p3Profile.put("gameLost", 5);
+        p3Profile.put("goals", 5);
+        p3Profile.put("conceals", 5);
+        p3Profile.put("position", "striker");
         Thingy thingy3 = new Thingy("P3", p3Profile);
         thingy3.setAllFieldsOfPlayer(3,3,3,3,"midfield");
         JSONObject profileObject = thingy3.returnPlayerProfile();
@@ -99,6 +106,9 @@ public class ThingyTest {
         JSONObject fortestingtoJson = new JSONObject();
         fortestingtoJson = thingy3.toJson();
         assertTrue(fortestingtoJson instanceof JSONObject);
+
+        thingy3.setName("Simon");
+        assertTrue(thingy3.getThingName().equals("Simon"));
 
     }
 

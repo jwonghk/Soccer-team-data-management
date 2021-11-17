@@ -36,12 +36,6 @@ public class Thingy implements Writable {
         setPlayerProfile();
     }
 
-    // Create a new Thingy here just for adding new Player
-    public Thingy(String name, JSONObject playerProfile, boolean newOrNot) {
-
-    }
-
-
     // EFFECT: return the name of player
     public String getThingName() {
         return this.name;

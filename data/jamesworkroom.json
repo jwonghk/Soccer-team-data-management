@@ -22,11 +22,18 @@
             "gameLost": 3
         }},
         {"Batistuta": {
-            "gameWon": 28,
+            "gameWon": 25,
             "conceals": 0,
             "position": "striker",
             "goals": 34,
             "gameLost": 4
+        }},
+        {"Miroslav Klose": {
+            "gameWon": 19,
+            "conceals": 0,
+            "position": "striker",
+            "goals": 27,
+            "gameLost": 5
         }}
     ],
     "name": "Soccer Team workroom"
