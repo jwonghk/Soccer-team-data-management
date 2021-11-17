@@ -398,7 +398,7 @@ public class GatherInformation extends JFrame implements ActionListener {
                 statusMessageArea.append("\n Player : " + nameOfPlayerToRemove
                         + " has been removed");
                 workRoom.setThingies(newPlayerListAfterRemovalofAPlayer);
-                setBoundAndAddtoPanel(jpanel, score, 900,570, 350, 300);
+                setBoundAndAddtoPanel(jpanel, score, 900,670, 350, 300);
             }
         });
     }

@@ -1,12 +1,5 @@
 {
     "players": [
-        {"batistuta": {
-            "gameWon": 21,
-            "conceals": 0,
-            "position": "midfield",
-            "goals": 29,
-            "gameLost": 7
-        }},
         {"Klinsmen": {
             "gameWon": 5,
             "conceals": 0,
@@ -27,6 +20,13 @@
             "position": "striker",
             "goals": 32,
             "gameLost": 3
+        }},
+        {"Batistuta": {
+            "gameWon": 28,
+            "conceals": 0,
+            "position": "striker",
+            "goals": 34,
+            "gameLost": 4
         }}
     ],
     "name": "Soccer Team workroom"
