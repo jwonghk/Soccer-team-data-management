@@ -3,6 +3,8 @@ package ui;
 import model.WorkRoom;
 import model.Thingy;
 import org.json.JSONObject;
+import model.EventLog;
+import model.Event;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -28,6 +30,8 @@ public class GatherInformation extends JFrame implements ActionListener {
     JSONObject playerProfileNewPlayer = new JSONObject();
     String playerNameOfNewlyAddedPlayer;
     ManageInformation manager;
+
+
 
 
 
@@ -85,6 +89,19 @@ public class GatherInformation extends JFrame implements ActionListener {
         makePanel();
 
 
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                System.out.println("Uncomment following to open another window!");
+                //MainPage m = new MainPage();
+                //m.setVisible(true);
+                e.getWindow().dispose();
+                System.out.println("JFrame Closed!");
+                printLog(EventLog.getInstance());
+                System.out.println();
+            }
+        });
     }
 
     // MODIFIES: this
@@ -124,6 +141,15 @@ public class GatherInformation extends JFrame implements ActionListener {
 
 
     }
+
+
+    // EFFECT: print all the log messages
+    public void printLog(EventLog el) {
+        for (Event next : el) {
+            System.out.println(next);
+        }
+    }
+
 
     // MODIFIES: this
     // EFFECT: adding some actionlisteners to the fields of the class
@@ -395,6 +421,10 @@ public class GatherInformation extends JFrame implements ActionListener {
                         newPlayerListAfterRemovalofAPlayer.add(thingy);
                     }
                 }
+
+                // EventLog: capture the instance when a Player is removed
+//                EventLog.getInstance().logEvent(new Event("Player " + nameOfPlayerToRemove
+//                        + " is removed"));
                 statusMessageArea.append("\n Player : " + nameOfPlayerToRemove
                         + " has been removed");
                 workRoom.setThingies(newPlayerListAfterRemovalofAPlayer);
@@ -454,10 +484,15 @@ public class GatherInformation extends JFrame implements ActionListener {
                         + player.getThingName());
             }
         }
+        // EventLog: this is to capture the event when a Player is being editted in the list
+//        EventLog.getInstance().logEvent(new Event("A player " + player.getThingName()
+//                + " has just been editted"));
     }
 
 
 
+
+    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(jb2)) {
@@ -480,6 +515,9 @@ public class GatherInformation extends JFrame implements ActionListener {
             playerStatusUpdater(playerToBeEdited);
         } else if (e.getSource().equals(confirmingAddingNewPlayer)) {
             statusMessageArea.append("\n New Player has been added!!");
+            // EventLog: capture the instance when a new Player is added to the current list of players
+//            EventLog.getInstance().logEvent(new Event("A new player " + playerNameOfNewlyAddedPlayer
+//                    + " has been added to the current list of players!"));
             newPlayer = new Thingy(playerNameOfNewlyAddedPlayer, playerProfileNewPlayer);
             workRoom.addThingy(newPlayer);
         }

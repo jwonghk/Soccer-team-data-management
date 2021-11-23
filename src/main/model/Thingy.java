@@ -89,6 +89,7 @@ public class Thingy implements Writable {
         }
 
         this.goals = goals;
+        EventLog.getInstance().logEvent(new Event("player's goal field is modified"));
         setPlayerProfile();
     }
 
@@ -96,6 +97,7 @@ public class Thingy implements Writable {
     // EFFECT: set the name of Thingy (thingy is a player)
     public void setName(String name) {
         this.name = name;
+        EventLog.getInstance().logEvent(new Event("player's name field is set"));
     }
 
     // MODIFIES: this
@@ -105,6 +107,7 @@ public class Thingy implements Writable {
             throw new Exception();
         }
         this.conceal = conceals;
+        EventLog.getInstance().logEvent(new Event("player's conceal field is set"));
         setPlayerProfile();
     }
 
@@ -115,6 +118,7 @@ public class Thingy implements Writable {
             throw new Exception();
         }
         this.gameWon = gameWon;
+        EventLog.getInstance().logEvent(new Event("player's gameWon field is set"));
         setPlayerProfile();
     }
 
@@ -125,6 +129,7 @@ public class Thingy implements Writable {
             throw new Exception();
         }
         this.gameLost = gameLost;
+        EventLog.getInstance().logEvent(new Event("player's gameLost field is set"));
         setPlayerProfile();
     }
 
@@ -137,6 +142,7 @@ public class Thingy implements Writable {
             throw new Exception();
         }
         this.position = position;
+        EventLog.getInstance().logEvent(new Event("player's position field is set"));
         setPlayerProfile();
     }
 

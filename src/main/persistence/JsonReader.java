@@ -67,10 +67,10 @@ public class JsonReader {
     private void addThingy(WorkRoom wr, JSONObject jsonObject) {
         Set<String> keySet = jsonObject.keySet();
         String key = keySet.iterator().next();
-        System.out.println("The current key is :" + key);
+//        System.out.println("The current key is :" + key);
         JSONObject profile = jsonObject.getJSONObject(key);
-        System.out.println("The size is : " + profile.length());
-        System.out.println("The position is: " + profile.getString("position"));
+//        System.out.println("The size is : " + profile.length());
+//        System.out.println("The position is: " + profile.getString("position"));
         Thingy thingy = new Thingy(key, profile);
         wr.addThingy(thingy);
     }

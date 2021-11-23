@@ -15,18 +15,25 @@
             "gameLost": 5
         }},
         {"Andreas Moller": {
-            "gameWon": 18,
+            "gameWon": 28,
             "conceals": 0,
             "position": "midfield",
             "goals": 8,
             "gameLost": 5
         }},
-        {"Hidetoshi Nakata": {
-            "gameWon": 7,
-            "conceals": 0,
-            "position": "midfield",
-            "goals": 15,
-            "gameLost": 1
+        {"Marioka": {
+            "gameWon": 17,
+            "conceals": 1,
+            "position": "defender",
+            "goals": 28,
+            "gameLost": 5
+        }},
+        {"Alex Santo": {
+            "gameWon": 17,
+            "conceals": 1,
+            "position": "defender",
+            "goals": 28,
+            "gameLost": 5
         }}
     ],
     "name": "Sampson"

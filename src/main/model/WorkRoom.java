@@ -34,6 +34,8 @@ public class WorkRoom implements Writable {
     // EFFECTS: adds thingy to this workroom
     public void addThingy(Thingy thingy) {
         thingies.add(thingy);
+        EventLog.getInstance().logEvent(new Event("A player has been loaded from the database "
+                + thingy.getThingName()));
     }
 
     // EFFECTS: returns an unmodifiable list of thingies in this workroom

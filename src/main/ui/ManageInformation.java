@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+
+// This class is to manage information collected by gatherinformation class
 public class ManageInformation {
 
 
@@ -32,6 +34,7 @@ public class ManageInformation {
     private String position;
 
 
+    // EFFECT: a constructor of ManageInformation class
     public ManageInformation(String roomOwnerName, Boolean haveBeenHere, GatherInformation gat)  {
 
         jsonDataFileName = "./data/" + roomOwnerName + "workroom.json";
