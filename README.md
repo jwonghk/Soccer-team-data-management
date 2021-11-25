@@ -58,5 +58,3 @@ A new player called Roberto Baggio is added succesfully as shown in Image 4. It
 is also captured by the LogEvent as shown in the image LogEvent2.
 
 ![](./data/Phase4_task2picture4.png)Image 4: A Player has been added
-
-![](./data/LogEventPicture2.png)LogEvent2
