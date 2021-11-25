@@ -37,22 +37,26 @@ some of my favorite players and set a team
 All the current players are loaded to the WorkRoom when data are being retrieved
 as shown in Image 1 and also captured by the LogEvent as shown in picture LogEvent1.
 
-![](./data/Phase4_task2picture1.png)Image 1: players loaded from the database
+![](./data/Phase4_task2picture1.png)Image 1:players loaded from the database
 
-![](./data/LogEventPicture1.png)LogEvent1
+![](./data/LogEventPicture1.png)LogEvent1: players loaded from database and removal event
+are captured
 
 A player is removed succesfully and captured by the LogEvent as shown in Image 2 and 
 picture LogEvent1.
 
-![](./data/Phase4_task2picture2.png)Image 2: A player is removed.
+![](./data/Phase4_task2picture2.png)Image 2: A player is removed
 
 A player's status (i.e. fields) are editted and set succesfully and captured
 by the Image 3 and LogEvent as shown in the picture LogEvent2.
-![](./data/Phase4_task2picture3.png)Image 3: Player's field has been editted. 
+
+![](./data/Phase4_task2picture3.png)Image 3: Player's field has been editted
+
 ![](./data/LogEventPicture2.png)LogEvent2
 
 A new player called Roberto Baggio is added succesfully as shown in Image 4. It
 is also captured by the LogEvent as shown in the image LogEvent2.
 
-![](./data/Phase4_task2picture4.png)Image 4: A Player has been added. 
+![](./data/Phase4_task2picture4.png)Image 4: A Player has been added
+
 ![](./data/LogEventPicture2.png)LogEvent2
