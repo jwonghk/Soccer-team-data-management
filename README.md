@@ -34,20 +34,25 @@ some of my favorite players and set a team
   input to the database this time
 
 ## Phase 4: Task 2
-Some of the events relating X's and Y such as adding X to Y, removing X from Y were actually
-implemented in my ui packages. I was able to capture those events using
-EventLog, and can print all the events.
-![](./data/picture1_task2.jpg)Image 1: players added, removed,
-editted
+All the current players are loaded to the WorkRoom when data are being retrieved
+as shown in Image 1 and also captured by the LogEvent as shown in picture LogEvent1.
 
-![](./data/picture2_task2.jpg)Image 2: the operations in Image1 being captured by EventLog
-as shown in this image
+![](./data/Phase4_task2picture1.png)Image 1: players loaded from the database
 
-However since making calls to logEvent is not
-allowed in the ui package, so only the loading of the data is captured after
-I comment out those lines that capture the logEvent in the ui package as shown
-in Image 3 below.
-![](./data/picture3_task2.jpg)Image 3: the operations in Image1 after commenting
-out the EventLog operations in the ui packages
+![](./data/LogEventPicture1.png)LogEvent1
 
+A player is removed succesfully and captured by the LogEvent as shown in Image 2 and 
+picture LogEvent1.
 
+![](./data/Phase4_task2picture2.png)Image 2: A player is removed.
+
+A player's status (i.e. fields) are editted and set succesfully and captured
+by the Image 3 and LogEvent as shown in the picture LogEvent2.
+![](./data/Phase4_task2picture3.png)Image 3: Player's field has been editted. 
+![](./data/LogEventPicture2.png)LogEvent2
+
+A new player called Roberto Baggio is added succesfully as shown in Image 4. It
+is also captured by the LogEvent as shown in the image LogEvent2.
+
+![](./data/Phase4_task2picture4.png)Image 4: A Player has been added. 
+![](./data/LogEventPicture2.png)LogEvent2

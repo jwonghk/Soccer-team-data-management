@@ -43,7 +43,7 @@ public class ManageInformation {
         if (haveBeenHere) {
             loadWorkRoom();
         } else if (!haveBeenHere) {
-            gat.statusMessageArea.setText("Welcome to using our application. \n"
+            gat.returnJTextArea().setText("Welcome to using our application. \n"
                     + "A file has been created for you since you are new user!");
             WorkRoom workRoom = new WorkRoom(roomOwnerName);
             this.workRoom = workRoom;
@@ -75,7 +75,7 @@ public class ManageInformation {
     }
 
     // EFFECTS: saves the workroom to file
-    protected void saveWorkRoom() {
+    public void saveWorkRoom() {
         try {
             jsonWriter.open();
             jsonWriter.write(this.workRoom);

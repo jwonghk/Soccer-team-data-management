@@ -13,6 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+// this class is not used in Phase 3 when I implemented the GUI. It is only used
+//  during Phase 2 when we only have User Interface available. So this does not appear
+//  in the UI (user interface) diagram in Phase 4.
+
 // citation: codes here are borrowed or modified based on the demo application
 //          from CPSC 210
 //   https://edge.edx.org/courses/course-v1:UBC+CPSC210+all/courseware

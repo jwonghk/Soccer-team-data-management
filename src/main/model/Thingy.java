@@ -9,8 +9,10 @@ import persistence.Writable;
 //   https://edge.edx.org/courses/course-v1:UBC+CPSC210+all/courseware
 
 // Represents a thingy having a name and a category
-// thingy actually represents player in my dataset, and name of the player will
-//    be used as a Key to the JSONObject with player name as key, and playerProfile as value
+// ****thingy actually represents player***** in my dataset, and name of the player will
+//    be used as a Key to the JSONObject with player name as key, and playerProfile as value.
+//    Thingy is used as a name, because persistance feature is implemented and is based upon
+//   the example given in the course and they call the class Thingy
 public class Thingy implements Writable {
     private String name;
     private Integer gameWon;
@@ -89,7 +91,7 @@ public class Thingy implements Writable {
         }
 
         this.goals = goals;
-        EventLog.getInstance().logEvent(new Event("player's goal field is modified"));
+        EventLog.getInstance().logEvent(new Event("Player " + this.name + "'s goal field is set"));
         setPlayerProfile();
     }
 
@@ -97,7 +99,7 @@ public class Thingy implements Writable {
     // EFFECT: set the name of Thingy (thingy is a player)
     public void setName(String name) {
         this.name = name;
-        EventLog.getInstance().logEvent(new Event("player's name field is set"));
+        EventLog.getInstance().logEvent(new Event("Player " + name + "'s name field is set"));
     }
 
     // MODIFIES: this
@@ -107,7 +109,7 @@ public class Thingy implements Writable {
             throw new Exception();
         }
         this.conceal = conceals;
-        EventLog.getInstance().logEvent(new Event("player's conceal field is set"));
+        EventLog.getInstance().logEvent(new Event("Player " + this.name + "'s conceal field is set"));
         setPlayerProfile();
     }
 
@@ -118,7 +120,7 @@ public class Thingy implements Writable {
             throw new Exception();
         }
         this.gameWon = gameWon;
-        EventLog.getInstance().logEvent(new Event("player's gameWon field is set"));
+        EventLog.getInstance().logEvent(new Event("Player " + this.name + "'s gameWon field is set"));
         setPlayerProfile();
     }
 
@@ -129,7 +131,7 @@ public class Thingy implements Writable {
             throw new Exception();
         }
         this.gameLost = gameLost;
-        EventLog.getInstance().logEvent(new Event("player's gameLost field is set"));
+        EventLog.getInstance().logEvent(new Event("Player " + this.name + "'s gameLost field is set"));
         setPlayerProfile();
     }
 
@@ -142,7 +144,7 @@ public class Thingy implements Writable {
             throw new Exception();
         }
         this.position = position;
-        EventLog.getInstance().logEvent(new Event("player's position field is set"));
+        EventLog.getInstance().logEvent(new Event("Player " + this.name + "'s position field is set"));
         setPlayerProfile();
     }
 

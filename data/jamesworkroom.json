@@ -25,15 +25,8 @@
             "gameWon": 25,
             "conceals": 0,
             "position": "striker",
-            "goals": 34,
-            "gameLost": 4
-        }},
-        {"Miroslav Klose": {
-            "gameWon": 19,
-            "conceals": 0,
-            "position": "striker",
-            "goals": 30,
-            "gameLost": 3
+            "goals": 19,
+            "gameLost": 7
         }}
     ],
     "name": "Soccer Team workroom"

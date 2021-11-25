@@ -5,6 +5,7 @@ import model.Thingy;
 import org.json.JSONObject;
 import model.EventLog;
 import model.Event;
+import ui.ManageInformation;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -19,10 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-// This class is mainly to gather the information through the graphical user interface GUI
-// It includes various methods to work with the ManageInformation class which mainly uses
-// to retrieve, save information to the database
 public class GatherInformation extends JFrame implements ActionListener {
+
 
     WorkRoom workRoom;
     Thingy player = null;
@@ -414,20 +413,13 @@ public class GatherInformation extends JFrame implements ActionListener {
                 JTextField jtf = (JTextField) e.getSource();
                 String nameOfPlayerToRemove = jtf.getText();
                 List<Thingy> thingylist;
-                List<Thingy> newPlayerListAfterRemovalofAPlayer = new ArrayList<Thingy>();
-                thingylist = workRoom.getThingies();
-                for (Thingy thingy : thingylist) {
-                    if (!thingy.getThingName().equals(nameOfPlayerToRemove)) {
-                        newPlayerListAfterRemovalofAPlayer.add(thingy);
-                    }
-                }
 
-                // EventLog: capture the instance when a Player is removed
-//                EventLog.getInstance().logEvent(new Event("Player " + nameOfPlayerToRemove
-//                        + " is removed"));
+                thingylist = workRoom.getThingies();
+                workRoom.playerRemoval(thingylist, nameOfPlayerToRemove);
+
+
                 statusMessageArea.append("\n Player : " + nameOfPlayerToRemove
                         + " has been removed");
-                workRoom.setThingies(newPlayerListAfterRemovalofAPlayer);
                 setBoundAndAddtoPanel(jpanel, score, 900,670, 350, 300);
             }
         });
@@ -518,8 +510,14 @@ public class GatherInformation extends JFrame implements ActionListener {
             // EventLog: capture the instance when a new Player is added to the current list of players
 //            EventLog.getInstance().logEvent(new Event("A new player " + playerNameOfNewlyAddedPlayer
 //                    + " has been added to the current list of players!"));
+
             newPlayer = new Thingy(playerNameOfNewlyAddedPlayer, playerProfileNewPlayer);
-            workRoom.addThingy(newPlayer);
+
+            workRoom.playerAdded(newPlayer, playerNameOfNewlyAddedPlayer);
         }
+    }
+
+    public JTextArea returnJTextArea() {
+        return this.statusMessageArea;
     }
 }
