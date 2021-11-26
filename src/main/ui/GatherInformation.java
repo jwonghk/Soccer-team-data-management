@@ -484,7 +484,6 @@ public class GatherInformation extends JFrame implements ActionListener {
 
 
 
-    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(jb2)) {
