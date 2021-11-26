@@ -511,7 +511,6 @@ public class GatherInformation extends JFrame implements ActionListener {
 //                    + " has been added to the current list of players!"));
 
             newPlayer = new Thingy(playerNameOfNewlyAddedPlayer, playerProfileNewPlayer);
-
             workRoom.playerAdded(newPlayer, playerNameOfNewlyAddedPlayer);
         }
     }
