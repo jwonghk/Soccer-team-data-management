@@ -58,3 +58,23 @@ A new player called Roberto Baggio is added succesfully as shown in Image 4. It
 is also captured by the LogEvent as shown in the image LogEvent2.
 
 ![](./data/Phase4_task2picture4.png)Image 4: A Player has been added
+
+
+## Phase 4: Task 3
+![](./data/UML_Design_Diagram.png)UML Diagram
+
+I think if I have learned more about the design of programming before starting my 
+Phase 3 of the project, I would have 
+probably used some design pattern in my project. I might have included design
+pattern such as Java Observer Pattern since I have lots of actionlisterner
+which listen to various inputs in my graphical unit interface.
+
+If I have more time working on the project, I think I would have:
+- think hard about the design first provided I have learned it before staring
+  the project
+- draw UML digram before implementing or define any class
+- refine the design along the way
+- make the code in my program more adhere to the cohesion principal
+  and reduce coupling
+- creating class such that each one would serve a more specific purpose
+
